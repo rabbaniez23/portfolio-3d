@@ -1,17 +1,24 @@
 <template>
-  <section id="skills" class="py-24 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Skill & <span class="text-blue-500">Teknologi</span></h2>
-        <p class="text-gray-400">Alat tempur yang saya gunakan untuk mewujudkan ide.</p>
+  <section id="skills" class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-down">
+        <h2 class="text-3xl font-bold text-white">Tech <span class="text-blue-500">Stack</span></h2>
+        <p class="text-gray-400 mt-2">Teknologi yang saya gunakan untuk berkarya.</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div v-for="skill in skills" :key="skill.name" 
-             class="p-6 bg-slate-800/50 rounded-xl border border-white/5 hover:border-blue-500/50 hover:bg-slate-800 transition group cursor-default">
-          <div class="text-4xl mb-4 group-hover:scale-110 transition duration-300">{{ skill.icon }}</div>
-          <h3 class="text-xl font-semibold text-white">{{ skill.name }}</h3>
-          <p class="text-sm text-blue-400 mt-1">{{ skill.level }}</p>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div v-for="(category, index) in skillCategories" :key="index" 
+             class="bg-slate-800/40 rounded-2xl p-6 border border-white/5 hover:border-blue-500/30 transition backdrop-blur-sm"
+             data-aos="fade-up" :data-aos-delay="index * 100">
+          <h3 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-2 flex items-center gap-2">
+            {{ category.title }}
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <div v-for="tech in category.items" :key="tech" 
+                 class="flex items-center gap-2 px-4 py-2 bg-slate-900/80 rounded-lg text-slate-300 hover:text-white hover:bg-blue-600 transition cursor-default">
+               <span class="text-sm font-medium">{{ tech }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -19,14 +26,10 @@
 </template>
 
 <script setup>
-const skills = [
-  { name: 'Vue.js', icon: '💚', level: 'Advanced' },
-  { name: 'Node.js', icon: '🚀', level: 'Intermediate' },
-  { name: 'Tailwind CSS', icon: '🎨', level: 'Advanced' },
-  { name: 'JavaScript', icon: '⚡', level: 'Advanced' },
-  { name: 'Git', icon: '📦', level: 'Intermediate' },
-  { name: 'Figma', icon: '🖌️', level: 'Basic' },
-  { name: 'Firebase', icon: '🔥', level: 'Intermediate' },
-  { name: 'Vercel', icon: '▲', level: 'Advanced' },
+const skillCategories = [
+  { title: "Languages", items: ["JavaScript (ES6+)", "PHP", "Java", "Python", "SQL"] },
+  { title: "Frontend", items: ["Vue.js 3", "React", "Tailwind CSS", "Bootstrap", "Vite"] },
+  { title: "Backend", items: ["Laravel", "Node.js", "MySQL", "Firebase", "REST API"] },
+  { title: "Tools & Others", items: ["Git / GitHub", "Figma", "Postman", "VS Code", "Vercel"] }
 ]
 </script>
