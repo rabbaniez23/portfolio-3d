@@ -5,12 +5,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         
-        <div class="flex-shrink-0 cursor-pointer group flex items-center gap-2">
-          <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/20 animate-float">
-            <span class="text-white font-bold text-xl">R</span>
-          </div>
+        <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3">
+          <img :src="logoImg" alt="Logo" class="w-16 h-16 object-contain animate-float" />
+          
           <span class="text-xl font-bold text-white tracking-wide group-hover:text-emerald-300 transition duration-300">
-            Ezra<span class="text-blue-500">.</span>
+            Personal cv<span class="text-blue-500">.</span>
           </span>
         </div>
 
@@ -57,6 +56,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// Import Logo dari folder assets
+import logoImg from '../assets/logo.png'
+
 const isOpen = ref(false)
 const isScrolled = ref(false)
 
@@ -68,7 +70,6 @@ const menuItems = [
   { name: 'Experience', href: '#experience' },
 ]
 
-// Deteksi scroll untuk mengubah background navbar
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
@@ -78,10 +79,9 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 </script>
 
 <style scoped>
-/* Animasi Floating (Mengapung) */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-3px); }
 }
 .animate-float {
   animation: float 3s ease-in-out infinite;
