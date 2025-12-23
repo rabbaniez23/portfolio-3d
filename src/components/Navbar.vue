@@ -8,8 +8,13 @@
         <div class="flex-shrink-0 cursor-pointer group flex items-center gap-3">
           <img :src="logoImg" alt="Logo" class="w-16 h-16 object-contain animate-float" />
           
-          <span class="text-xl font-bold text-white tracking-wide group-hover:text-emerald-300 transition duration-300">
-            Personal cv<span class="text-blue-500">.</span>
+          <span 
+            class="text-xl font-bold text-white tracking-wide relative inline-block min-w-[140px]"
+            :class="{ 'glitch-active': isGlitching }"
+            :data-text="displayText"
+          >
+            {{ displayText }}
+            <span v-if="!isGlitching" class="text-emerald-500">.</span>
           </span>
         </div>
 
@@ -55,12 +60,14 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-
-// Import Logo dari folder assets
-import logoImg from '../assets/logo.png'
+import logoImg from '../assets/logo.png' // Pastikan ini benar
 
 const isOpen = ref(false)
 const isScrolled = ref(false)
+
+// --- LOGIKA GLITCH TEXT ---
+const displayText = ref('Personal cv') // Teks awal
+const isGlitching = ref(false)
 
 const menuItems = [
   { name: 'Home', href: '#home' },
@@ -70,12 +77,43 @@ const menuItems = [
   { name: 'Experience', href: '#experience' },
 ]
 
+// Fungsi untuk menukar teks dengan efek glitch
+const swapText = () => {
+  if (isGlitching.value) return; // Cegah tabrakan
+  
+  isGlitching.value = true; // 1. Mulai efek rusak (glitch)
+  
+  // 2. Tunggu sebentar (0.3 detik) lalu ganti teks
+  setTimeout(() => {
+    if (displayText.value === 'Personal cv') {
+      displayText.value = 'Monecruzz';
+    } else {
+      displayText.value = 'Personal cv';
+    }
+  }, 300);
+
+  // 3. Matikan efek glitch setelah selesai (0.8 detik total)
+  setTimeout(() => {
+    isGlitching.value = false;
+  }, 800);
+}
+
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50
 }
 
-onMounted(() => window.addEventListener('scroll', handleScroll))
-onUnmounted(() => window.removeEventListener('scroll', handleScroll))
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+  
+  // Jalankan penukaran teks setiap 4 detik
+  const intervalId = setInterval(swapText, 4000);
+  
+  // Cleanup saat komponen dihancurkan
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+    clearInterval(intervalId)
+  })
+})
 </script>
 
 <style scoped>
@@ -85,5 +123,57 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 }
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+/* === GLITCH EFFECT CSS === */
+.glitch-active {
+  position: relative;
+  color: white;
+}
+
+/* Layer Glitch 1 (Merah/Magenta) */
+.glitch-active::before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 1px 0 #ff00c1;
+  top: 0;
+  color: white;
+  background: #0f172a; /* Samakan dengan warna navbar/bg */
+  overflow: hidden;
+  clip-path: inset(0 90% 0 0);
+  animation: noise-anim-1 2s infinite linear alternate-reverse;
+}
+
+/* Layer Glitch 2 (Biru/Cyan) */
+.glitch-active::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  text-shadow: -1px 0 #00fff9;
+  top: 0;
+  color: white;
+  background: #0f172a;
+  overflow: hidden;
+  clip-path: inset(0 0 90% 0);
+  animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes noise-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); }
+  20% { clip-path: inset(60% 0 10% 0); }
+  40% { clip-path: inset(40% 0 50% 0); }
+  60% { clip-path: inset(80% 0 5% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(30% 0 40% 0); }
+}
+
+@keyframes noise-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); }
+  20% { clip-path: inset(30% 0 20% 0); }
+  40% { clip-path: inset(70% 0 10% 0); }
+  60% { clip-path: inset(20% 0 50% 0); }
+  80% { clip-path: inset(50% 0 30% 0); }
+  100% { clip-path: inset(0% 0 80% 0); }
 }
 </style>
