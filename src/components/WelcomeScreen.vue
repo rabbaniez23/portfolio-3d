@@ -38,10 +38,10 @@
         <transition name="fade-zoom">
           <div v-if="step === 3" class="absolute space-y-3">
             <h2 class="text-2xl md:text-4xl font-bold text-white">
-              Let's Create <span class="text-blue-400">Magic</span>
+              Ayo Bekerja <span class="text-blue-400">Bersama</span>
             </h2>
             <div class="inline-block px-5 py-2 rounded-full bg-slate-800/50 border border-blue-500/30 text-xs md:text-sm text-blue-200 backdrop-blur-md">
-              Prepare to dive in...
+              Bersiap untuk membuka CV...
             </div>
           </div>
         </transition>
