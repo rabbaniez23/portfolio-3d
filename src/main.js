@@ -6,6 +6,9 @@ import App from './App.vue'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+// Import and inject Speed Insights
+import { injectSpeedInsights } from '@vercel/speed-insights'
+
 const app = createApp(App)
 app.mount('#app')
 
@@ -18,3 +21,6 @@ AOS.init({
   mirror: true,     // PENTING: True = animasi jalan juga saat scroll ke atas
   anchorPlacement: 'top-bottom',
 })
+
+// Inject Speed Insights for performance monitoring
+injectSpeedInsights()
