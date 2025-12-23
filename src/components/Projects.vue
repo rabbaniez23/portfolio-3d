@@ -16,7 +16,7 @@
           <div class="h-56 bg-slate-700/50 overflow-hidden relative group-hover:shadow-inner">
             <div class="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition z-10"></div>
             
-            <img :src="project.image" :alt="project.title" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
+            <img :src="project.image" :alt="project.title" class="w-full h-56 object-cover group-hover:scale-110 transition duration-700" />
             
             <div v-if="project.isTeam" class="absolute top-3 right-3 z-20 bg-blue-600/90 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg backdrop-blur-md">
               Team Project
@@ -37,7 +37,7 @@
             </div>
 
             <a :href="project.link" target="_blank" class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-emerald-500/20 transform hover:-translate-y-1">
-              Live Demo 🚀
+              Live Demo 
             </a>
           </div>
         </div>

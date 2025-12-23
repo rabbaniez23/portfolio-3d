@@ -1,39 +1,64 @@
 <template>
-  <section id="skills" class="py-12 md:py-24 relative z-10">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10 md:mb-16" data-aos="fade-down">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">Tech <span class="text-blue-500">Stack</span></h2>
-        <p class="text-gray-400 mt-2 text-sm md:text-base">Teknologi yang saya gunakan untuk berkarya.</p>
+  <section id="skills" class="relative py-24 overflow-hidden">
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6">
+      
+      <div class="text-center mb-12" data-aos="fade-down">
+        <h2 class="text-3xl font-bold text-white mb-3">
+          My <span class="text-emerald-400">Tools</span>
+        </h2>
+        <p class="text-slate-400 text-sm">
+          Tools favorite saya untuk mewujudkan ide menjadi realita.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 justify-center">
         
-        <div v-for="(category, index) in skillCategories" :key="index" 
-             class="bg-slate-800/40 rounded-2xl p-5 md:p-6 border border-white/5 hover:border-blue-500/30 transition backdrop-blur-sm"
-             data-aos="fade-up" :data-aos-delay="index * 100">
+        <div 
+          v-for="(tech, index) in allSkills" 
+          :key="tech.name"
+          class="group relative flex flex-col items-center justify-center p-4 bg-slate-900/40 border border-slate-800 rounded-2xl hover:bg-slate-800/60 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 cursor-default"
+          data-aos="fade-up"
+          :data-aos-delay="index * 50"
+        >
+          <img 
+            :src="tech.icon" 
+            :alt="tech.name" 
+            class="w-8 h-8 md:w-10 md:h-10 object-contain mb-3 filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-110" 
+          />
           
-          <h3 class="text-lg md:text-xl font-bold text-white mb-4 md:mb-6 border-b border-white/10 pb-2 flex items-center gap-2">
-            {{ category.title }}
-          </h3>
+          <span class="text-xs font-medium text-slate-500 group-hover:text-white transition-colors">
+            {{ tech.name }}
+          </span>
           
-          <div class="flex flex-wrap gap-2 md:gap-3">
-            <div v-for="tech in category.items" :key="tech" 
-                 class="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-slate-900/80 rounded-lg text-slate-300 hover:text-white hover:bg-blue-600 transition cursor-default">
-               <span class="text-xs md:text-sm font-medium">{{ tech }}</span>
-            </div>
-          </div>
         </div>
 
       </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-const skillCategories = [
-  { title: "Languages", items: ["JavaScript (ES6+)", "PHP", "Java", "Python", "SQL"] },
-  { title: "Frontend", items: ["Vue.js 3", "React", "Tailwind CSS", "Bootstrap", "Vite"] },
-  { title: "Backend", items: ["Laravel", "Node.js", "MySQL", "Firebase", "REST API"] },
-  { title: "Tools & Others", items: ["Git / GitHub", "Figma", "Postman", "VS Code", "Vercel"] }
-]
+// Menggabungkan semua skill jadi satu list
+const allSkills = [
+  { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg' },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg' },
+  { name: 'Tailwind', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Figma', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
+  { name: 'VS Code', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
+];
 </script>
+
+<style scoped>
+/* Tidak perlu CSS tambahan, pakai Tailwind saja biar ringan */
+</style>
