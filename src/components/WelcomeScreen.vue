@@ -60,7 +60,7 @@
         </div>
         
         <div class="flex justify-between mt-3 text-[10px] uppercase tracking-widest font-mono font-bold">
-          <span class="text-slate-500" v-if="progress < 100">Loading Assets...</span>
+          <span class="text-slate-500" v-if="progress < 100">Loading ...</span>
           <span class="text-cyan-400 animate-pulse" v-else>Ready.</span>
           <span class="text-blue-400">{{ progress }}%</span>
         </div>
