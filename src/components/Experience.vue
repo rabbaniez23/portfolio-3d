@@ -1,16 +1,16 @@
 <template>
-  <section id="experience" class="py-12 md:py-24 relative z-10">
+  <section id="experience" class="py-4 md:py-4 relative z-10">
     <div class="max-w-4xl mx-auto px-4">
+      
       <div class="text-center mb-10 md:mb-16" data-aos="fade-down">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">Experience & <span class="text-blue-500">Education</span></h2>
+        <h2 class="text-2xl md:text-3xl font-bold text-white">My <span class="text-emerald-500">Education</span> History</h2>
       </div>
 
       <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8 md:space-y-12">
         
         <div v-for="(item, index) in timeline" :key="index" class="relative pl-6 md:pl-12" data-aos="fade-left" :data-aos-delay="index * 100">
           
-          <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2" 
-               :class="item.type === 'edu' ? 'border-emerald-500' : 'border-blue-500'"></div>
+          <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-emerald-500"></div>
           
           <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1 md:mb-2">
             <h3 class="text-lg md:text-xl font-bold text-white">{{ item.role }}</h3>
@@ -28,9 +28,31 @@
 </template>
 
 <script setup>
+// Data Pendidikan (Urutan dari Terbaru ke Terlama)
 const timeline = [
-  { type: 'edu', role: 'S1 Ilmu Komputer', place: 'Universitas Pendidikan Indonesia', period: '2021 - Sekarang', desc: 'Aktif dalam Himpunan Mahasiswa, Asisten Laboratorium Pemrograman Dasar, dan mempertahankan IPK 3.8.' },
-  { type: 'work', role: 'Full Stack Developer Intern', place: 'PT. Teknologi Masa Depan', period: 'Jan 2024 - Apr 2024', desc: 'Membangun fitur dashboard analitik menggunakan Vue.js dan mengoptimalkan query database untuk mempercepat load time sebesar 40%.' },
-  { type: 'org', role: 'Ketua Divisi Web Development', place: 'Komunitas Koding UPI', period: '2023 - 2024', desc: 'Mengadakan workshop mingguan tentang React dan Vue, serta memimpin tim dalam pembuatan website profil himpunan.' }
+  { 
+    role: 'S1 Ilmu Komputer', 
+    place: 'Universitas Pendidikan Indonesia', 
+    period: 'Sekarang', 
+    desc: 'Aktif mendalami Algoritma, Pengembangan Web Modern, dan Kecerdasan Buatan. Terlibat dalam berbagai proyek teknologi dan himpunan mahasiswa.' 
+  },
+  { 
+    role: 'KMI (Setara SMA)', 
+    place: 'Pondok Modern Darussalam Gontor', 
+    period: 'Lulus', 
+    desc: 'Pendidikan pesantren modern yang membentuk karakter disiplin, kemandirian, kepemimpinan, serta penguasaan bahasa Arab dan Inggris.' 
+  },
+  { 
+    role: 'Siswa', 
+    place: 'SMP 2 Sungailiat', 
+    period: 'Lulus', 
+    desc: 'Menempuh pendidikan menengah pertama dengan aktif mengikuti kegiatan sekolah dan membangun dasar akademik yang kuat.' 
+  },
+  { 
+    role: 'Siswa', 
+    place: 'SDN 9 Pemali', 
+    period: 'Lulus', 
+    desc: 'Pendidikan dasar yang menjadi fondasi awal kemampuan literasi, numerasi, dan pembentukan karakter.' 
+  }
 ]
 </script>
